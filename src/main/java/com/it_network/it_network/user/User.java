@@ -1,6 +1,5 @@
 package com.it_network.it_network.user;
 
-
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.it_network.it_network.comment.Comment;
 import jakarta.persistence.*;
@@ -49,12 +48,12 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority("user"));
+        return List.of(new SimpleGrantedAuthority("ROLE_USER"));
     }
 
     @Override
     public String getUsername() {
-        return user_id;
+        return this.email;
     }
 
     @Override

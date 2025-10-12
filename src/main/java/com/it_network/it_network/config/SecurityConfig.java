@@ -1,6 +1,5 @@
 package com.it_network.it_network.config;
 
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -23,7 +22,7 @@ public class SecurityConfig implements WebMvcConfigurer {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
                 .authorizeHttpRequests( (auth) -> auth
-                        .requestMatchers("/", "/login", "/auth/**", "/api/**&").permitAll()
+                        .requestMatchers("/", "/login", "/auth/**", "/api/**").permitAll()
                         .requestMatchers("/admin").hasRole("ADMIN")
                         .requestMatchers("/my/**").hasAnyRole("ADMIN", "USER")
                         .anyRequest().authenticated())
@@ -34,7 +33,6 @@ public class SecurityConfig implements WebMvcConfigurer {
                         .permitAll()
                 )
                 .csrf((auth) -> auth.disable())
-
                 .build();
     }
 
